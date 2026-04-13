@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Fish - Ikan Nila Merah & Ikan Lele Premium Yogyakarta. Ukuran seragam (Nila 4-6 ekor/kg, Lele 7-9 ekor/kg). Free delivery radius 5 km.">
+    <title>Smart Fish | Ikan Nila Merah & Lele Premium Yogyakarta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&display=swap');
+        
+        :root {
+            --primary: #00d4ff;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+        
+        .tail-container * {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .hero-video {
+            filter: brightness(0.65) contrast(1.15);
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #0a1729, #112233);
+            backdrop-filter: blur(16px);
+        }
+
+        .navbar-scrolled {
+            background: linear-gradient(90deg, #0a1729, #112233);
+            box-shadow: 0 10px 30px -10px rgb(0 212 255);
+        }
+
+        .fish-glow {
+            animation: fishGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes fishGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px #00d4ff); }
+            50% { filter: drop-shadow(0 0 35px #8b5cf6); }
+        }
+
+        .dropdown-menu {
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="tail-container">
+
+    <!-- NAVBAR - Diperbaiki total (tombol kecil + titik 3 menu) -->
+    <nav id="navbar" class="navbar border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+            
+            <!-- Logo + Teks SMART FISH (lurus & rapi) -->
+            <div class="flex items-center gap-x-4">
+                <img src="g.png" alt="Smart Fish Logo" class="h-16 w-auto fish-glow">
+                <div class="flex flex-col">
+                    <h1 class="heading-font text-4xl font-bold bg-gradient-to-r from-[#00d4ff] to-[#8b5cf6] bg-clip-text text-transparent tracking-[-1px] leading-none">SMART FISH</h1>
+                    <p class="text-xs font-medium tracking-[2px] text-cyan-300 -mt-px">PREMIUM AQUACULTURE • YOGYAKARTA</p>
+                </div>
+            </div>
+
+            <!-- Desktop: Tombol kecil + Titik 3 Menu -->
+            <div class="hidden md:flex items-center gap-x-4">
+                
+                <!-- Tombol Pesan Sekarang (ukuran dikecilkan) -->
+                <a onclick="showOrderForm()" 
+                   class="flex items-center bg-gradient-to-r from-[#00d4ff] to-[#8b5cf6] hover:brightness-110 text-white px-6 py-3 rounded-3xl font-semibold text-sm shadow-lg shadow-cyan-500/30">
+                    <img src="wa-removebg-preview.png" class="w-10 h-10 hover:scale-110 transition">
+                    PESAN SEKARANG
+                </a>
+
+                <!-- Titik 3 Menu (dropdown) -->
+                <div class="relative">
+                    <button onclick="toggleDropdown()" 
+                            class="w-10 h-10 flex items-center justify-center text-3xl text-white hover:text-[#00d4ff] rounded-2xl hover:bg-white/10">
+                        <img src="menu.png" class="w-10 h-10 hover:scale-110 transition">
+                    </button>
+                    
+                    <!-- Dropdown Menu -->
+                    <div id="dropdown-menu" class="hidden absolute right-0 mt-3 w-64 bg-slate-900 border border-cyan-400/20 rounded-3xl shadow-2xl py-4 dropdown-menu">
+                        <a onclick="navigateToSection('beranda');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">🏠 BERANDA</a>
+                        <a onclick="navigateToSection('produk');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">🐟 PRODUK</a>
+                        <a onclick="navigateToSection('kelebihan');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">⭐ KELEBIHAN</a>
+                        <a onclick="navigateToSection('tentang');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">ℹ️ TENTANG KAMI</a>
+                        <a onclick="navigateToSection('visi-misi');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">🎯 VISI &amp; MISI</a>
+                        <a onclick="navigateToSection('tim');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">👥 TIM EKSEKUTIF</a>
+                        <a onclick="navigateToSection('galeri');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">📸 GALERI</a>
+                        <a onclick="navigateToSection('kontak');toggleDropdown()" class="flex items-center px-6 py-3 hover:bg-white/10 text-white">📞 KONTAK</a>
+                        <div class="h-px bg-white/10 mx-6 my-2"></div>
+                        <a href="https://wa.me/6289601561469" target="_blank" onclick="toggleDropdown()" 
+                           class="flex items-center px-6 py-3 hover:bg-white/10 text-white">
+                             <img src="wa-removebg-preview.png" class="w-10 h-10 hover:scale-110 transition">Langsung Chat WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-4xl text-white">
+                <i class="fas fa-bars" id="hamburger-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0a1729] border-t border-cyan-400/20 px-8 py-8">
+            <div class="flex flex-col gap-y-8 text-lg font-semibold text-white">
+                <a onclick="navigateToSection('beranda');toggleMobileMenu()" class="flex items-center gap-x-4">🏠 BERANDA</a>
+                <a onclick="navigateToSection('produk');toggleMobileMenu()" class="flex items-center gap-x-4">🐟 PRODUK</a>
+                <a onclick="navigateToSection('kelebihan');toggleMobileMenu()" class="flex items-center gap-x-4">⭐ KELEBIHAN</a>
+                <a onclick="navigateToSection('tentang');toggleMobileMenu()" class="flex items-center gap-x-4">ℹ️ TENTANG KAMI</a>
+                <a onclick="navigateToSection('visi-misi');toggleMobileMenu()" class="flex items-center gap-x-4">🎯 VISI &amp; MISI</a>
+                <a onclick="navigateToSection('tim');toggleMobileMenu()" class="flex items-center gap-x-4">👥 TIM EKSEKUTIF</a>
+                <a onclick="navigateToSection('galeri');toggleMobileMenu()" class="flex items-center gap-x-4">📸 GALERI</a>
+                <a onclick="navigateToSection('kontak');toggleMobileMenu()" class="flex items-center gap-x-4">📞 KONTAK</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO (sudah rapi dari sebelumnya) -->
+    <section id="beranda" class="relative min-h-screen flex items-center overflow-hidden">
+        <video autoplay muted loop playsinline class="hero-video absolute inset-0 w-full h-full object-cover z-0" id="hero-video">
+            <source src="gs.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0a1729]/80 via-[#0a1729]/50 to-[#0a1729]/80 z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-8 relative z-20 pt-20 md:pt-0">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center gap-x-3 bg-white/10 backdrop-blur-2xl text-white text-base font-semibold px-8 py-3 rounded-3xl mb-8">
+                    <span class="relative flex h-4 w-4">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00d4ff] opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-4 w-4 bg-[#00d4ff]"></span>
+                    </span>
+                    FRESH HARVEST SETIAP PAGI • YOGYAKARTA
+                </div>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] heading-font text-white mb-6">
+                    NILA MERAH &amp; LELE<br>PREMIUM
+                </h1>
+                
+                <p class="text-3xl md:text-4xl text-[#8b5cf6] heading-font mb-6">
+                    Ukuran Seragam • Free Delivery 5 KM
+                </p>
+                
+                <p class="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto mb-12">
+                    Nila Merah 4-6 ekor/kg • Lele 7-9 ekor/kg<br>
+                    Segar langsung dari kolam. Kualitas perusahaan besar, harga UMKM.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a onclick="showOrderForm()" 
+                       class="flex-1 sm:flex-none bg-white text-slate-900 hover:bg-slate-100 px-12 py-7 rounded-3xl text-2xl font-bold flex items-center justify-center gap-x-4 shadow-2xl">
+                        <img src="wa-removebg-preview.png" class="w-10 h-10 hover:scale-110 transition">
+                        PESAN SEKARANG
+                    </a>
+                    
+                    <button onclick="navigateToSection('produk')" 
+                            class="flex-1 sm:flex-none border-2 border-white text-white hover:bg-white/10 px-12 py-7 rounded-3xl text-2xl font-bold flex items-center justify-center gap-x-4">
+                        <i class="fas fa-fish"></i>
+                        LIHAT PRODUK LENGKAP
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULIR PEMESANAN (Modal) -->
+    <div id="order-modal" onclick="if(event.target===this)hideOrderForm()" 
+         class="hidden fixed inset-0 bg-black/70 z-[9999] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-slate-900 w-full max-w-lg mx-4 rounded-3xl p-8">
+            <h2 class="text-3xl font-bold text-white mb-6">Formulir Pemesanan Smart Fish</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-slate-400 text-sm mb-2">Nama Lengkap</label>
+                    <input id="nama" type="text" placeholder="Masukkan nama Anda" 
+                           class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00d4ff]">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2">Nomor WhatsApp</label>
+                        <input id="wa" type="tel"placeholder="nomor wa anda" 
+                               class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00d4ff]">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2">Alamat Pengiriman</label>
+                        <input id="alamat" type="text" placeholder="Masukkan alamat lengkap" 
+                               class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00d4ff]">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-slate-400 text-sm mb-2">Pilih Produk</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label onclick="selectProduct(this)" data-product="Nila Merah" 
+                               class="product-option flex items-center justify-center border-2 border-transparent bg-white/10 hover:border-[#00d4ff] rounded-2xl py-4 cursor-pointer text-white font-medium">
+                            🐟 Nila Merah (4-6 ekor/kg)
+                        </label>
+                        <label onclick="selectProduct(this)" data-product="Lele" 
+                               class="product-option flex items-center justify-center border-2 border-transparent bg-white/10 hover:border-[#00d4ff] rounded-2xl py-4 cursor-pointer text-white font-medium">
+                            🐟 Lele (7-9 ekor/kg)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2">Jumlah (kg)</label>
+                        <input id="jumlah" type="number" placeholder="1" min="1" step="0.5"
+                               class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00d4ff]">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2">Catatan Tambahan</label>
+                        <input id="catatan" type="text" placeholder="beri - jika tidak ada" 
+                               class="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00d4ff]">
+                    </div>
+                </div>
+
+                <button onclick="kirimKeWA()" 
+                        class="w-full bg-gradient-to-r from-[#00d4ff] to-[#8b5cf6] text-white py-6 rounded-3xl font-bold text-xl flex items-center justify-center gap-x-3">
+                    <img src="wa-removebg-preview.png" class="w-10 h-10 ">
+                    KIRIM PESANAN KE WHATSAPP
+                </button>
+            </div>
+            
+            <button onclick="hideOrderForm()" 
+                    class="mt-4 w-full text-slate-400 hover:text-white text-sm">Tutup Formulir</button>
+        </div>
+    </div>
+
+    <!-- PRODUK SECTION (sama seperti sebelumnya, hanya tambah onclick ke form) -->
+    <section id="produk" class="py-28 bg-slate-950">
+        <!-- ... (sama seperti kode sebelumnya, cukup pendek supaya tidak terlalu panjang) -->
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <span class="px-6 py-2 bg-cyan-400/10 text-cyan-400 text-sm font-bold rounded-full">PRODUK PREMIUM</span>
+                <h2 class="text-6xl heading-font text-white mt-4">Ikan Segar Pilihan Smart Fish</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-14">
+                <div class="card-hover bg-slate-900 rounded-3xl overflow-hidden border border-cyan-400/10">
+                    <div class="h-80 relative">
+                        <img src="nila.jpeg" alt="Nila Merah" class="w-full h-full object-cover">
+                        
+                        <!-- overlay gelap -->
+                        <div class="absolute inset-0 bg-black/40"></div>
+
+                        <!-- teks di atas gambar -->
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <p class="text-4xl font-bold">NILA MERAH</p>
+                            <p class="text-cyan-300">4–6 ekor/kg</p>
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <div class="mt-12 flex justify-between items-end">
+                            <div>
+                                <p class="text-xs uppercase text-slate-400">Harga per kg</p>
+                                <p class="text-5xl font-bold text-white">Rp 35.000</p>
+                            </div>
+                            <a onclick="showOrderForm()" class="cursor-pointer bg-gradient-to-r from-red-400 to-amber-400 text-white px-10 py-5 rounded-3xl font-bold text-xl flex items-center">
+                                PESAN SEKARANG <i class="ml-4 fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lele card sama, ganti teks & warna -->
+                <div class="card-hover bg-slate-900 rounded-3xl overflow-hidden border border-cyan-400/10">
+                    <div class="h-80 relative">
+                        <img src="lele.jpeg" alt="Lele" class="w-full h-full object-cover">
+                        
+                        <div class="absolute inset-0 bg-black/40"></div>
+
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <p class="text-4xl font-bold">LELE</p>
+                            <p class="text-cyan-300">7–9 ekor/kg</p>
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <div class="mt-12 flex justify-between items-end">
+                            <div>
+                                <p class="text-xs uppercase text-slate-400">Harga per kg</p>
+                                <p class="text-5xl font-bold text-white">Rp 25.000</p>
+                            </div>
+                            <a onclick="showOrderForm()" class="cursor-pointer bg-gradient-to-r from-purple-400 to-cyan-400 text-white px-10 py-5 rounded-3xl font-bold text-xl flex items-center">
+                                PESAN SEKARANG <i class="ml-4 fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sisanya (kelebihan, tentang, visi, tim, galeri, kontak, footer) tetap sama seperti versi sebelumnya -->
+
+    <script>
+        // Toggle dropdown titik 3
+        function toggleDropdown() {
+            const menu = document.getElementById('dropdown-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Tutup dropdown kalau klik di luar
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('dropdown-menu');
+            if (!e.target.closest('.relative')) dropdown.classList.add('hidden');
+        });
+
+        // Modal Formulir
+        function showOrderForm() {
+            document.getElementById('order-modal').classList.remove('hidden');
+            document.getElementById('order-modal').classList.add('flex');
+        }
+
+        function hideOrderForm() {
+            const modal = document.getElementById('order-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Pilih produk di form
+        function selectProduct(el) {
+            document.querySelectorAll('.product-option').forEach(opt => opt.classList.remove('border-[#00d4ff]'));
+            el.classList.add('border-[#00d4ff]');
+        }
+
+        // Kirim ke WA
+        function kirimKeWA() {
+            const nama = document.getElementById('nama').value || 'Tidak diisi';
+            const waNum = document.getElementById('wa').value || '089601561469';
+            const alamat = document.getElementById('alamat').value || 'Tidak diisi';
+            const produk = document.querySelector('.product-option.border-\\[\\#00d4ff\\]') ? 
+                           document.querySelector('.product-option.border-\\[\\#00d4ff\\]').dataset.product : 'Nila Merah & Lele';
+            const jumlah = document.getElementById('jumlah').value || '1';
+            const catatan = document.getElementById('catatan').value || '-';
+
+            const message = `Halo Smart Fish!%0A%0A` +
+                            `Nama: ${nama}%0A` +
+                            `Nomor WA: ${waNum}%0A` +
+                            `Alamat: ${alamat}%0A%0A` +
+                            `Pesanan:%0A` +
+                            `• Produk: ${produk}%0A` +
+                            `• Jumlah: ${jumlah} kg%0A` +
+                            `• Catatan: ${catatan}%0A%0A` +
+                            `Mohon diproses ya! Terima kasih 🙏`;
+
+            window.open(`https://wa.me/6289601561469?text=${message}`, '_blank');
+            hideOrderForm();
+        }
+
+        function navigateToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                const navHeight = document.getElementById('navbar').offsetHeight + 20;
+                const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        window.onload = function() {
+            console.log('%c✅ Smart Fish Website v2.2 – Navbar sudah rapi dengan titik 3, tombol kecil, dan formulir pemesanan WA!', 'color:#00d4ff;font-size:16px;font-weight:bold');
+            window.addEventListener('scroll', () => {
+                document.getElementById('navbar').classList.toggle('navbar-scrolled', window.scrollY > 50);
+            });
+        }
+    </script>
+</body>
+</html>
+
+    <!-- KELEBIHAN -->
+    <section id="kelebihan" class="py-28 bg-gradient-to-b from-slate-950 to-[#0a1729]">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-5">
+                    <span class="text-[#8b5cf6] font-bold">KENAPA SMART FISH?</span>
+                    <h2 class="text-6xl heading-font text-white mt-3 leading-none">Layanan cepat Garansi ikan hidup </h2>
+                    <p class="mt-8 text-xl text-slate-300">Kami bukan penjual ikan biasa. Kami adalah akuakultur modern dengan SOP terbaik.</p>
+                </div>
+                <div class="lg:col-span-7 grid grid-cols-2 gap-8">
+                    <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-8">
+                        <i class="fas fa-ruler-horizontal text-5xl text-cyan-400 mb-6"></i>
+                        <h4 class="text-2xl font-semibold">Ukuran Seragam</h4>
+                        <p class="text-slate-300 mt-3">Nila Merah 4-6 ekor/kg • Lele 7-9 ekor/kg. Konsistensi setiap hari.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-8">
+                        <i class="fas fa-truck text-5xl text-emerald-400 mb-6"></i>
+                        <h4 class="text-2xl font-semibold">Free Delivery</h4>
+                        <p class="text-slate-300 mt-3">Gratis antar radius 5 km dari lokasi kami di Yogyakarta.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-8">
+                        <i class="fas fa-seedling text-5xl text-emerald-400 mb-6"></i>
+                        <h4 class="text-2xl font-semibold">Budidaya Bioflok</h4>
+                        <p class="text-slate-300 mt-3">Air bersih, ramah lingkungan, tanpa lumpur.</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-8">
+                        <i class="fas fa-star text-5xl text-amber-400 mb-6"></i>
+                        <h4 class="text-2xl font-semibold">Garansi</h4>
+                        <p class="text-slate-300 mt-3">Ikan dijamin hidup dan sesuai pesanan 100%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+<section id="tentang" class="py-28 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="grid lg:grid-cols-2 gap-20 items-start">
+            
+            <!-- KIRI (TEKS) -->
+            <div class="max-w-2xl">
+                <h2 class="text-6xl heading-font text-white leading-tight">
+                    Profil Usaha Smart Fish
+                </h2>
+
+                <div class="mt-10 space-y-6 text-xl text-slate-300 leading-relaxed text-justify">
+                    <p>
+                        Smart Fish adalah usaha penyedia ikan profesional berbasis di Yogyakarta yang menghadirkan ikan nila merah dan lele premium dengan standar kualitas terbaik dan bergaransi.
+                    </p>
+
+                    <p>
+                        Kami memastikan setiap produk yang dihasilkan bebas dari bau lumpur, memiliki ukuran yang seragam, dan dipanen tepat waktu untuk menjaga kesegaran maksimal.
+                    </p>
+
+                    <p>
+                        Fokus kami adalah memberikan kepastian harga di bawah pasar, jaminan kualitas produk, serta mendukung ketahanan pangan lokal.
+                    </p>
+
+                    <p>
+                        Smart Fish hadir sebagai solusi pemenuhan kebutuhan protein berkualitas dengan prinsip transparansi penuh melalui slogan:
+                        <span class="text-cyan-400 font-semibold">"Segar, Sehat, Terpercaya"</span>.
+                    </p>
+                </div>
+
+                <!-- STAT -->
+                <div class="mt-12 grid grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-cyan-400">500+</div>
+                        <div class="text-slate-400 mt-2">PELANGGAN PUAS</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-purple-400">20+</div>
+                        <div class="text-slate-400 mt-2">MITRA UMKM</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-amber-400">4.9</div>
+                        <div class="text-slate-400 mt-2">RATING PELANGGAN</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KANAN (VIDEO - FIX POSISI) -->
+            <div class="sticky top-28">
+                <div class="rounded-3xl overflow-hidden border-2 border-cyan-400/30 shadow-2xl relative">
+                    
+                    <div class="aspect-video bg-black flex items-center justify-center cursor-pointer">
+                        
+                        <!-- VIDEO BACKGROUND -->
+                        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+                            <source src="gs.mp4" type="video/mp4">
+                        </video>
+
+                       
+    </div>
+</section>
+    <!-- VISI MISI -->
+    <section id="visi-misi" class="py-28 bg-gradient-to-br from-[#0a1729] to-slate-950">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-14">
+                    <h3 class="flex items-center gap-x-4 text-4xl font-semibold text-white"><span class="text-5xl">🎯</span> VISI</h3>
+                    <p class="text-3xl text-slate-200 mt-8 leading-tight">Menjadi penyedia ikan segar nomor satu di Indonesia dengan kualitas dan pelayanan terbaik.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-3xl border border-white/10 rounded-3xl p-14">
+                    <h3 class="flex items-center gap-x-4 text-4xl font-semibold text-white"><span class="text-5xl">🚀</span> MISI</h3>
+                    <ul class="mt-10 space-y-8 text-2xl text-slate-300">
+                        <li>01. Menyediakan ikan premium ukuran seragam setiap hari</li>
+                        <li>02. Free delivery radius 5 km untuk kemudahan pelanggan</li>
+                        <li>03. Budidaya ramah lingkungan &amp; berkelanjutan</li>
+                        <li>04. Mendukung UMKM kuliner lokal Yogyakarta</li>
+                        <li>05. Memastikan customer puas & Garansi ikan hidup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIM EKSEKUTIF -->
+    <section id="tim" class="py-28 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-20">
+                <span class="text-cyan-400 font-bold text-lg">TIM PROFESIONAL</span>
+                <h2 class="text-6xl heading-font text-white">Pemimpin di Balik Smart Fish</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Galang -->
+                <div class="text-center">
+                    <div class="mx-auto w-64 h-64 rounded-3xl overflow-hidden border-4 border-cyan-400/30">
+                        <img src="galangweb.jpeg" alt="Galang CEO" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-6 text-2xl font-bold text-white">Galang</h4>
+                    <p class="text-cyan-400">CEO &amp; Founder</p>
+                    <p class="text-slate-400 text-sm mt-4 px-4">Koordinator utama yang mengawasi seluruh operasional Smart Fish dengan keputusan berbasis data.</p>
+                </div>
+                <!-- Sujarwin -->
+                <div class="text-center">
+                    <div class="mx-auto w-64 h-64 rounded-3xl overflow-hidden border-4 border-purple-400/30">
+                        <img src="jarwin.jpeg" alt="Sujarwin" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-6 text-2xl font-bold text-white">Sujarwin</h4>
+                    <p class="text-purple-400">COO &amp; CTO</p>
+                    <p class="text-slate-400 text-sm mt-4 px-4">Mengembangkan infrastruktur dan sistem teknologi agar selalu optimal.</p>
+                </div>
+                <!-- Bintang Syah Dewa -->
+                <div class="text-center">
+                    <div class="mx-auto w-64 h-64 rounded-3xl overflow-hidden border-4 border-emerald-400/30">
+                        <img src="dewa.jpeg" alt="Bintang" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-6 text-2xl font-bold text-white">M. Bintang Syah Dewa</h4>
+                    <p class="text-emerald-400">CMO</p>
+                    <p class="text-slate-400 text-sm mt-4 px-4">Membangun jejaring dengan mitra UMKM kuliner di Yogyakarta.</p>
+                </div>
+                <!-- Zaki -->
+                <div class="text-center">
+                    <div class="mx-auto w-64 h-64 rounded-3xl overflow-hidden border-4 border-amber-400/30">
+                        <img src="jaki.jpeg" alt="Zaki" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="mt-6 text-2xl font-bold text-white">M. Zaki Abdurrahman</h4>
+                    <p class="text-amber-400">CFO</p>
+                    <p class="text-slate-400 text-sm mt-4 px-4">Mengelola keuangan, arus kas, dan stok bahan baku dengan presisi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERI -->
+   <section id="galeri" class="py-28 bg-white text-slate-900">
+    <div class="max-w-7xl mx-auto px-8">
+        <h2 class="text-6xl heading-font text-center mb-20">Galeri Smart Fish</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            
+            <div class="aspect-square overflow-hidden rounded-3xl shadow-xl">
+                <img src="m.jpeg" class="w-full h-full object-cover" alt="Kolam Nila">
+            </div>
+
+            <div class="aspect-square overflow-hidden rounded-3xl shadow-xl">
+                <img src="kolam lele.jpeg" class="w-full h-full object-cover" alt="Panen Lele">
+            </div>
+
+            <div class="aspect-square overflow-hidden rounded-3xl shadow-xl">
+                <img src="kolam nila.jpeg" class="w-full h-full object-cover" alt="Ikan Segar">
+            </div>
+
+            <div class="aspect-square overflow-hidden rounded-3xl shadow-xl">
+                <img src="gabungan.png" class="w-full h-full object-cover" alt="Tim Smart Fish">
+            </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="py-28 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-20">
+                <div>
+                    <h2 class="text-6xl heading-font text-white">Hubungi Kami</h2>
+                    
+                    <div class="mt-16 space-y-10">
+                        <a href="https://wa.me/6289601561469" target="_blank" class="flex items-center gap-x-8 group">
+                            <img src="wa-removebg-preview.png" class="w-20 h-20 hover:scale-110 transition">
+                            <div>
+                                <p class="text-4xl font-semibold text-white">0896-0156-1469</p>
+                                <p class="text-cyan-300">WhatsApp (balas &lt;30 detik)</p>
+                            </div>
+                        </a>
+
+                        <!-- Email clickable -->
+                        <a href="mailto:sarpind09@gmail.com" class="flex items-center gap-x-8 group">
+                             <img src="email.png" class="w-20 h-20 hover:scale-110 transition">
+                            <div>
+                                <p class="text-4xl font-semibold text-white">sarpind09@gmail.com</p>
+                                <p class="text-cyan-300">Kirim email langsung</p>
+                            </div>
+                        </a>
+
+                        <!-- IG clickable logo -->
+                        <a href="https://www.instagram.com/smartfish.official?igsh=MXc0aGcyMHlva2wxdQ==" target="_blank" class="flex items-center gap-x-8 group">
+                            <img src="ig.png" class="w-20 h-20 hover:scale-110 transition">
+                            <div>
+                                <p class="text-4xl font-semibold text-white">@smartfish.official</p>
+                                <p class="text-cyan-300">Instagram</p>
+                            </div>
+                        </a>
+
+                        <!-- TikTok clickable logo -->
+                        <a href="https://tiktok.com/@smart_fish_" target="_blank" class="flex items-center gap-x-8 group">
+                           <img src="tt.png" class="w-20 h-20 hover:scale-110 transition">
+                            <div>
+                                <p class="text-4xl font-semibold text-white">@smart_fish_</p>
+                                <p class="text-cyan-300">TikTok</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <p class="mt-16 text-slate-400">Lokasi: <a href="https://maps.app.goo.gl/cb1bAtknJV1SX3Gd7" target="_blank" class="underline text-cyan-400">Buka di Google Maps</a></p>
+                </div>
+
+                <!-- Map -->
+                <div class="rounded-3xl overflow-hidden border border-cyan-400/30 h-[520px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.123456789012!2d110.367!3d-7.801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNDgnMDIuMiJTIDExMMKwMjInMDEuMiJF!5e0!3m2!1sid!2sid!4v1710000000000" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-20 text-slate-400">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-y-12">
+                <div class="md:col-span-5">
+   
+            <!-- DESKRIPSI -->
+            <p class="mt-6 max-w-sm">
+                Ikan nila merah &amp; lele premium ukuran seragam. Free delivery 5 km. 
+                Standar perusahaan besar dengan harga terjangkau.
+            </p>
+
+            <!-- COPYRIGHT -->
+            <p class="text-xs mt-12">
+                © 2026 Smart Fish • Yogyakarta, Indonesia
+            </p>
+
+            </div>
+                            
+                <div class="md:col-span-2">
+                    <p class="font-bold text-white mb-6">NAVIGASI</p>
+                    <ul class="space-y-4">
+                        <li><a onclick="navigateToSection('beranda')" class="hover:text-cyan-400">Beranda</a></li>
+                        <li><a onclick="navigateToSection('produk')" class="hover:text-cyan-400">Produk</a></li>
+                        <li><a onclick="navigateToSection('tim')" class="hover:text-cyan-400">Tim Eksekutif</a></li>
+                    </ul>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <p class="font-bold text-white mb-6">MEDIA SOSIAL</p>
+                    <div class="flex gap-x-6 text-4xl">
+                        <a href="https://www.instagram.com/smartfish.official?igsh=MXc0aGcyMHlva2wxdQ==" target="_blank" class="social-icon"> <img src="ig.png" class="w-10 h-10 hover:scale-110 transition"></a>
+                        <a href="https://tiktok.com/@smart_fish_" target="_blank" class="social-icon"><img src="tt.png" class="w-10 h-10 hover:scale-110 transition"></a>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-3">
+                   <p class="text-sm">
+                    Menghadirkan kualitas, konsistensi, dan kepercayaan dalam setiap hasil panen. Smart Fish, solusi ikan segar premium untuk Anda.
+                </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function navigateToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                const navHeight = document.getElementById('navbar').offsetHeight + 20;
+                const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        }
+
+        function playProfileVideo() {
+            const container = document.getElementById('profile-video-container');
+            const iframe = document.getElementById('profile-video-iframe');
+            container.classList.remove('hidden');
+            // GANTI DENGAN VIDEO YOUTUBE ANDA
+            iframe.src = "https://www.youtube.com/embed/YOUR_YOUTUBE_ID?autoplay=1";
+        }
+
+        window.onload = function() {
+            console.log('%c✅ Website Smart Fish v2.0 – Versi Premium Siap Pakai!', 'color:#00d4ff;font-size:16px;font-weight:bold');
+            window.addEventListener('scroll', () => {
+                document.getElementById('navbar').classList.toggle('navbar-scrolled', window.scrollY > 50);
+            });
+        }
+    </script>
+</body>
+</html>
